@@ -66,6 +66,9 @@ void swap_element(stack_t **head, unsigned int line_number);
 void add_element(stack_t **head, unsigned int line_number);
 void nop(stack_t **stack, unsigned int line_number);
 void free_dlistint(stack_t **head);
+void sub_stack(stack_t **stack, unsigned int line_number);
+void div_stack(stack_t **stack, unsigned int line_number);
+void mul_stack(stack_t **stack, unsigned int line_number);
 
 /*main*/
 int main(int argc, char *argv[]);

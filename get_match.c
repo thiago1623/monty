@@ -18,28 +18,26 @@ void get_match(char **buffer, stack_t **head, unsigned int line_number)
 		{"swap", swap_element},
 		{"add", add_element},
 		{"nop", nop},
+		{"sub", sub_stack},
+		{"div", div_stack},
+		{"mul", mul_stack},
 		{NULL, NULL}
 	};
 	token = strtok(*buffer, " \n\t");/*separation of the tokens*/
-	while (count < 7)/*loop for the structure match*/
+
+	while (count < 10)/*loop for the structure match*/
 	{
 		if (strcmp(token, match[count].opcode) == 0)
 		{/*compare if make match*/
 			match[count].f(head, line_number);
+			op_code.opcode = match[count].opcode;
 			return;
 		}
-
-		/*
-		 *if (strcmp(token, match[count].opcode) == 0)
-		 *{
-		 *	op_code.opcode = match[count].opcode;
-		 *	dprintf(STDERR_FILENO, "L<%u>: unknown instruction <%s>\n",
-		 *		line_number, op_code.opcode);
-		 *	free(g_v.buffer);
-		 *	exit(EXIT_FAILURE);
-		 *	return;
-		 *}
-		*/
 		count++;
 	}
+	dprintf(STDERR_FILENO, "L<%u>: unknown instruction <%s>\n", line_number,
+		op_code.opcode);
+	free(g_v.buffer);
+	free_dlistint(&g_v.head);
+	exit(EXIT_FAILURE);
 }

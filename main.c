@@ -27,7 +27,7 @@ int main(int argc, char *argv[])
 
 	g_v.fd = fopen(pathname, "r");
 
-	if (!g_v.fd)/*it’s not possible to open the file,*/
+	if (!g_v.fd || g_v.fd == NULL)/*it’s not possible to open the file,*/
 	{
 		dprintf(STDERR_FILENO, "Error: Can't open file <%s>\n", pathname);
 		exit(EXIT_FAILURE);

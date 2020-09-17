@@ -20,9 +20,8 @@ void push_element(stack_t **head, unsigned int line_number)
 		free_dlistint(&g_v.head);
 		exit(EXIT_FAILURE);
 	}
-
 	number = atoi(clear_number);
-	if (number < 0)
+	if (number < 0 || !number)
 	{/*is not an integer or if there is no argument given to push*/
 		dprintf(STDERR_FILENO, "L%u: usage: push integer\n",
 			line_number);
@@ -31,19 +30,21 @@ void push_element(stack_t **head, unsigned int line_number)
 		free_dlistint(&g_v.head);
 		exit(EXIT_FAILURE);
 	}
-
-	if (!*head)/*If it doesn't exist head*/
+	if (number >= 0)
 	{
-		new_node = create_node(number);
-		*head = new_node;
-	}
-	else
-	{
-		new_node = create_node(number);
-		tmp = *head;
-		new_node->next = tmp;
-		tmp->prev = new_node;
-		*head = new_node;
+		if (!*head)/*If it doesn't exist head*/
+		{
+			new_node = create_node(number);
+			*head = new_node;
+		}
+		else
+		{
+			new_node = create_node(number);
+			tmp = *head;
+			new_node->next = tmp;
+			tmp->prev = new_node;
+			*head = new_node;
+		}
 	}
 }
 /**
@@ -75,8 +76,11 @@ void pall_element(stack_t **head, unsigned int line_number)
 	}
 	while (tmp)
 	{
-		printf("%d\n", tmp->n);
-		tmp = tmp->next;
+		if (tmp->n >= 0)
+		{
+			printf("%d\n", tmp->n);
+			tmp = tmp->next;
+		}
 	}
 }
 /**
