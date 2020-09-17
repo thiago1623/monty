@@ -11,21 +11,17 @@ void get_match(char **buffer, stack_t **head, unsigned int line_number)
 	char *token;/*variable for the separation of the tokens*/
 
 	instruction_t match[] = {/*structure to obtain each function*/
-		{"push", push_element},
-		{"pall", pall_element},
-		{"pint", pint_element},
-		{"pop", pop_element},
-		{"swap", swap_element},
-		{"add", add_element},
-		{"nop", nop},
-		{"sub", sub_stack},
-		{"div", div_stack},
-		{"mul", mul_stack},
+		{"push", push_element}, {"pall", pall_element},
+		{"pint", pint_element}, {"pop", pop_element},
+		{"swap", swap_element}, {"add", add_element},
+		{"nop", nop}, {"sub", sub_stack},
+		{"div", div_stack}, {"mul", mul_stack},
+		{"mod", mod_stack}, {"pchar", pchar_stack},
 		{NULL, NULL}
 	};
 	token = strtok(*buffer, " \n\t");/*separation of the tokens*/
 
-	while (count < 10)/*loop for the structure match*/
+	while (count < 12)/*loop for the structure match*/
 	{
 		if (strcmp(token, match[count].opcode) == 0)
 		{/*compare if make match*/

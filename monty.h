@@ -69,6 +69,8 @@ void free_dlistint(stack_t **head);
 void sub_stack(stack_t **stack, unsigned int line_number);
 void div_stack(stack_t **stack, unsigned int line_number);
 void mul_stack(stack_t **stack, unsigned int line_number);
+void pchar_stack(stack_t **stack, unsigned int line_number);
+void mod_stack(stack_t **stack, unsigned int line_number);
 
 /*main*/
 int main(int argc, char *argv[]);
